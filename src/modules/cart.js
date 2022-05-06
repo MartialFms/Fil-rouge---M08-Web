@@ -1,11 +1,20 @@
 // Ajoute un élément au panier ou incrémente la quantité
 const addIteminCart = (article) => {
     if(localStorage.getItem('product-' + article.id) === null) {
-        localStorage.setItem('product-' + article.id, JSON.stringify(article));
+        let total = Math.round(((article.quantity * article.unitaryPrice) * 100) / 100);
+        let totalPrice = { totalAmount: total };
+        let newItem = Object.assign(article, totalPrice);
+        localStorage.setItem('product-' + article.id, JSON.stringify(newItem));
+        createElementCart(newItem);
     } else {
         let item = JSON.parse(localStorage.getItem('product-' + article.id));
+        console.log(item.totalAmount);
         item.quantity += article.quantity;
+        let total = Math.round((((article.quantity * article.unitaryPrice) * 100) / 100)) + item.totalAmount;
+        console.log(total);
+        item.totalAmount = item.totalAmount + (article.quantity * article.price);
         localStorage.setItem('product-' + item.id, JSON.stringify(item));
+        updateElementCart(item);
     }
 }
 
