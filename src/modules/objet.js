@@ -25,36 +25,62 @@ class Article{
     console.log(AcAspire);
 
     const articleList = [S9, Iphone13, Imac, AcAspire, MacBook,Huawei];
-    export {articleList};
+
 
 
 //test
-const testArticleList =article_list.forEach (articles => console.log(articles));
+articleList.forEach (articles => console.log(articles));
 
- const showArticleList = article_list.forEach (targetArticle => {
+articleList.forEach (article => {
     let articles = document.querySelector('.article_list');
     let targetArticle = document.createElement('div');
-    targetArticle.classList.add(`.article_list`);
+    targetArticle.classList.add(`article_list`);
+    targetArticle.classList.add(`product-${article.id}`)
     targetArticle.innerHTML = 
     `
-    <div class="flex items-center space-x-6 p-4 rounded-lg w-80 relative">
-    <div class="w-16 h-16 rounded-full bg-yellow-200 overflow-hidden">
-        <img src="https://cap.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fcap.2F2022.2F05.2F03.2F6c0f1d2c-add0-4300-8fef-d054fddf0c8b.2Ejpeg/1200x630/background-color/ffffff/quality/70/cr/wqkgU2Ftc3VuZyAvIENBUElUQUw%3D/samsung-galaxy-s21-fe-amazon-propose-le-smartphone-a-un-prix-fou-1435478.jpg" alt="" class="w-full h-full object-cover">
-    </div>
-    <div class="flex">
-        <div class="flex flex-col">
-            <p class="font-bold text-gray-900 text-lg">${article.name}</p>
-            <p class="text-gray-400 font-semibold">quantité : ${article.desc}</p>
-            <p class="text-gray-400 font-semibold">quantité : ${article.unitaryPrice}</p>
-        </div>
-        <div class="absolute bottom-2 right-2">
-            <span class="font-bold text-xl text-indigo-500">${article.quantity}€</span>
-        </div>
-    </div>
+    <div class="article_list p-2">
+        <div class="flex bg-green-200 shadow rounded items-center space-x-6 p-4 rounded-lg w-[700px] relative">
+            <div class="w-16 h-16 rounded-full bg-yellow-200 overflow-hidden">
+                <img src="">
+            </div>
+            <div class="flex">
+                <div class="flex flex-col">
+                    <p class="font-bold text-gray-900 text-lg">${article.name}</p>
+                    <p class="text-gray-400 font-semibold">${article.desc}</p>
+
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-gray-400 font-semibold">${article.unitaryPrice} €</p>
+                </div>
+                <div class="absolute bottom-2 right-2 flex items-center">
+                    <button onclick="ATest()" class="px-4 py-2 bg-red-600 text-white font-bold rounded-l-lg">-</button>
+                    <span class="px-4 py-2 bg-gray-100 text-white font-bold font-bold text-xl text-indigo-500">${article.quantity}</span>
+                      <button onclick="ATest()" class="px-4 py-2 bg-blue-600 text-white font-bold rounded-r-lg">+</button>
+                </div>
+            </div>
+            </div>
     </div>
     `
-    articles.appendChild(articles)
+    articles.appendChild(targetArticle);
 });
 
+const ArticleUp = (article) => {
 
+        var value = parseInt(document.getElementById(this.quantity));
+        value ++;
+        document.getElementById(document.getElementById(this.quantity)).value = value;
 
+        articleList.forEach (articles => console.log(articles));
+}
+
+const ArticleDown = (article) => {
+
+    var value = parseInt(document.getElementById(this.quantity));
+
+    if(value>0) {
+        value --;
+        document.getElementById(document.getElementById(this.quantity)).value = value;
+    
+        articleList.forEach (articles => console.log(articles));
+    }
+}
